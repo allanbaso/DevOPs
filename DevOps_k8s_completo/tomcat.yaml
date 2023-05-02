@@ -1,0 +1,13 @@
+
+##modificacion por Allan B.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tomcat
+  labels:
+    estado: "desarrollo"
+    resposable: "Ronaldo"
+spec:
+  containers:
+   - name: tomcat
+     image: tomcat

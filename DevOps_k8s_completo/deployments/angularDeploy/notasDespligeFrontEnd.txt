@@ -1,0 +1,17 @@
+https://blog.mayadata.io/openebs/steps-to-deploy-angular-application-on-kubernetes
+
+pasos para crear un front en kubernetes
+
+1. hacer el archivo de connf de nginx  nginx-custom.conf
+2.  hacer el docker file  Dockerfile
+3. crear la imagen y subirla al docker file.
+
+docker build -t inyee/spa-demo:v1 .
+docker push inyee/spa-demo:v1
+
+4. hacer el deployment.yaml.
+
+5. hacer el service. yaml. == revisar este archivo puesto que tuve que hacerlo imperativamente.
+kubectl expose deploy heroes-d --type=LoadBalancer --port 80 --name=my-service3
+
+

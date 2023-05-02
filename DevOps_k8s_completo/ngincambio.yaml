@@ -1,0 +1,236 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"multi","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"web","ports":[{"containerPort":80}]},{"command":["watch","-n5","ping","localhost"],"image":"alpine","name":"frontal"}]}}
+    creationTimestamp: "2022-12-01T21:05:44Z"
+    name: multi
+    namespace: default
+    resourceVersion: "284079"
+    uid: 11127605-b160-4dd3-813b-3d49f34cbc6b
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: web
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-2gdsl
+        readOnly: true
+    - command:
+      - watch
+      - -n5
+      - ping
+      - localhost
+      image: alpine
+      imagePullPolicy: Always
+      name: frontal
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-2gdsl
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-2gdsl
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T21:05:44Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T21:05:48Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T21:05:48Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T21:05:44Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://952953b025c91d4e5f04533b077e004b8d8324dd3adeca820b263ada757d7be5
+      image: alpine:latest
+      imageID: docker-pullable://alpine@sha256:8914eb54f968791faf6a8638949e480fef81e697984fba772b3976835194c6d4
+      lastState: {}
+      name: frontal
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2022-12-01T21:05:47Z"
+    - containerID: docker://1e9282dae1fc712daae7ae97bcd79e8fc54949144315d79b227918ef38830a09
+      image: nginx:latest
+      imageID: docker-pullable://nginx@sha256:e209ac2f37c70c1e0e9873a5f7231e91dcd83fdf1178d8ed36c2ec09974210ba
+      lastState: {}
+      name: web
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2022-12-01T21:05:46Z"
+    hostIP: 192.168.49.2
+    phase: Running
+    podIP: 172.17.0.4
+    podIPs:
+    - ip: 172.17.0.4
+    qosClass: BestEffort
+    startTime: "2022-12-01T21:05:44Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"otra":"etiqueta","version":"v1","zone":"prod"},"name":"nginx","namespace":"default"},"spec":{"containers":[{"image":"apasoft/nginx:v1","name":"nginx"}]}}
+    creationTimestamp: "2022-12-01T20:57:07Z"
+    labels:
+      otra: etiqueta
+      version: v1
+      zone: prod
+    name: nginx
+    namespace: default
+    resourceVersion: "283825"
+    uid: fe211e99-f303-4658-834e-4f9c1640fcfe
+  spec:
+    containers:
+    - image: apasoft/nginx:v1
+      imagePullPolicy: IfNotPresent
+      name: nginx
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-2n8j8
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-2n8j8
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T20:57:07Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T20:57:09Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T20:57:09Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2022-12-01T20:57:07Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://0e2f9f83afd2316944ff214a72719a8c3c64e8c5018193f85e1779e65306d38d
+      image: apasoft/nginx:v1
+      imageID: docker-pullable://apasoft/nginx@sha256:45b3154692ef8073f8b22dd70012fedf6e25c9a1dda7aa83b27ac28332a15e64
+      lastState: {}
+      name: nginx
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2022-12-01T20:57:08Z"
+    hostIP: 192.168.49.2
+    phase: Running
+    podIP: 172.17.0.3
+    podIPs:
+    - ip: 172.17.0.3
+    qosClass: BestEffort
+    startTime: "2022-12-01T20:57:07Z"
+kind: List
+metadata:
+  resourceVersion: ""

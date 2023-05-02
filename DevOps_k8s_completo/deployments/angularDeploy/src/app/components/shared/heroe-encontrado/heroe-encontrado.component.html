@@ -1,0 +1,14 @@
+<h1>Héroes con la letra o palabra : <small>{{parametro}}</small></h1>
+<hr>
+
+<div class="row" *ngIf="heroes.length==0">
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            No hay coincidencias para ese nombre: {{parametro}}
+        </div>
+    </div>
+</div>
+<!--   <app-heroe-tarjeta [heroe]="data" [i]="i" *ngFor="let data of heroes; let i = index"></app-heroe-tarjeta> -->
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <app-heroe-tarjeta [heroe]="data" [i]="data.id" *ngFor="let data of heroes; "></app-heroe-tarjeta>
+</div>
