@@ -1,0 +1,14 @@
+
+##modificacion por Allan B.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tomcat
+  labels:
+    estado: "Testing"
+    resposable: "Allan B."
+    developer: "Allan B."
+spec:
+  containers:
+   - name: tomcat
+     image: tomcat:9.0-jre8-temurin-focal
