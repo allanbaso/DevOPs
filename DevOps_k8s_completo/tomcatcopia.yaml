@@ -1,5 +1,4 @@
 
-##modificacion por Allan B.
 apiVersion: v1
 kind: Pod
 metadata:
@@ -11,4 +10,4 @@ metadata:
 spec:
   containers:
    - name: tomcat
-     image: tomcat:9.0-jre8-temurin-focal
+     image: tomcat
